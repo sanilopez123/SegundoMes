@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=3.0, minimum-scale=0.5">
+    <title>Para Ti, Mi Amor - Segundo Mes 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Partículas flotantes */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 12px;
+            animation: float 6s infinite ease-in-out;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Cabecera */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeInDown 1.5s ease-out;
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            background: linear-gradient(45deg, #fff, #ffeaa7, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .date {
+            font-size: 1.3em;
+            color: rgba(255, 255, 255, 0.9);
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+
+        /* Carta principal */
+        .letter-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 50px 40px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            position: relative;
+            animation: fadeInUp 1.8s ease-out;
+            margin-bottom: 40px;
+        }
+
+        .letter-container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #667eea);
+            border-radius: 27px;
+            z-index: -1;
+            animation: borderGlow 3s linear infinite;
+        }
+
+        .letter-header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid rgba(102, 126, 234, 0.3);
+            padding-bottom: 25px;
+        }
+
+        .letter-title {
+            font-size: 2.5em;
+            color: #667eea;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .letter-subtitle {
+            font-size: 1.4em;
+            color: #764ba2;
+            font-style: italic;
+        }
+
+        .letter-content {
+            line-height: 2;
+            color: #333;
+            font-size: 1.2em;
+            text-align: justify;
+            margin-bottom: 40px;
+        }
+
+        .letter-content p {
+            margin-bottom: 25px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .letter-content p::before {
+            content: '💕';
+            position: absolute;
+            left: -5px;
+            top: 0;
+            opacity: 0.6;
+        }
+
+        .letter-content p:nth-child(even)::before {
+            content: '✨';
+        }
+
+        .signature {
+            text-align: right;
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .signature-text {
+            font-size: 1.4em;
+            color: #667eea;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .signature-name {
+            font-size: 1.6em;
+            color: #764ba2;
+            font-weight: bold;
+        }
+
+        /* Galería de fotos */
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+            animation: fadeInUp 2s ease-out;
+        }
+
+        .photo-frame {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            backdrop-filter: blur(10px);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .photo-frame::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .photo-frame:hover::before {
+            left: 100%;
+        }
+
+        .photo-frame:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+        }
+
+        .photo-container {
+            width: 100%;
+            height: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f093fb, #667eea);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #000;
+        }
+
+        .photo-frame:hover .photo-container img {
+            transform: scale(1.05);
+        }
+
+        .photo-placeholder {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1em;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .photo-caption {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 1.1em;
+            color: #667eea;
+            font-style: italic;
+            font-weight: bold;
+        }
+
+        /* Mensaje final especial */
+        .final-message {
+            background: linear-gradient(135deg, rgba(240, 147, 251, 0.9), rgba(102, 126, 234, 0.9));
+            color: white;
+            padding: 40px;
+            border-radius: 25px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            animation: fadeInUp 2.2s ease-out;
+        }
+
+        .final-message h3 {
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .final-message p {
+            font-size: 1.3em;
+            line-height: 1.8;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        /* Contador de tiempo */
+        .time-counter {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            animation: fadeInUp 1.6s ease-out;
+        }
+
+        .counter-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .counter-item {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .counter-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .counter-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .counter-title {
+            font-size: 1.8em;
+            color: #667eea;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        /* Animaciones */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10%, 90% {
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-100px) rotate(180deg);
+                opacity: 0.8;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5em;
+            }
+            
+            .letter-container {
+                padding: 30px 25px;
+            }
+            
+            .letter-title {
+                font-size: 2em;
+            }
+            
+            .letter-content {
+                font-size: 1.1em;
+            }
+            
+            .photo-gallery {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .counter-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px 15px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .letter-container {
+                padding: 25px 20px;
+            }
+            
+            .letter-title {
+                font-size: 1.8em;
+            }
+            
+            .letter-content {
+                font-size: 1em;
+                line-height: 1.8;
+            }
+            
+            .photo-container {
+                height: 220px;
+            }
+            
+            .counter-number {
+                font-size: 2em;
+            }
+            
+            .final-message {
+                padding: 25px 20px;
+            }
+            
+            .final-message h3 {
+                font-size: 1.8em;
+            }
+            
+            .final-message p {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Partículas de fondo -->
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+        <!-- Cabecera -->
+        <header class="header">
+            <h1>Una Carta para Ti Mi amor </h1>
+            <div class="date">12/05/2025</div>
+        </header>
+
+        <!-- Contador de tiempo juntos -->
+        <div class="time-counter">
+            <div class="counter-title">Llevamos Juntos...</div>
+            <div class="counter-grid">
+                <div class="counter-item">
+                    <span class="counter-number" id="monthsCounter">2</span>
+                    <span class="counter-label">Meses</span>
+                </div>
+                <div class="counter-item">
+                    <span class="counter-number" id="daysCounter">60</span>
+                    <span class="counter-label">Días</span>
+                </div>
+                <div class="counter-item">
+                    <span class="counter-number" id="hoursCounter">1440</span>
+                    <span class="counter-label">Horas</span>
+                </div>
+                <div class="counter-item">
+                    <span class="counter-number">∞</span>
+                    <span class="counter-label">Amor</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carta principal -->
+        <div class="letter-container">
+            <div class="letter-header">
+                <div class="letter-title">Mi Amor Infinito</div>
+                <div class="letter-subtitle">Celebrando nuestro segundo mes juntos</div>
+            </div>
+
+            <div class="letter-content">
+                <p>Mi amor hermoso, hoy celebramos dos meses desde que llegaste a mi vida para cambiarla por completo. Dos meses de amor a distancia que han demostrado que ni la distancia puede separar dos corazones que se aman de verdad. Cada día contigo, aunque sea a través de una pantalla, ha sido un regalo del cielo.</p>
+
+                <p>La distancia física entre nosotros ha hecho que nuestro amor sea aún más especial y único. Cada mensaje tuyo ilumina mi día, cada videollamada se convierte en el momento más esperado, y cada "buenas noches" tuyo me acompaña en mis sueños. Has logrado estar presente en mi vida de maneras que nunca imaginé posibles.</p>
+
+                <p>Recuerdo perfectamente nuestros primeros días, esa emoción de conocerte, las mariposas en el estómago cada vez que sonaba la notificación de tu mensaje, y cómo poco a poco fuiste conquistando mi corazón kilómetro tras kilómetro. Hoy, dos meses después, puedo decir que eres la persona más especial que ha llegado a mi vida.</p>
+
+                <p>Me encanta cómo compartes conmigo cada detalle de tu día, cómo me haces sentir cerca aunque estemos lejos. Me fascina tu forma de amarme sin límites ni fronteras. Adoro nuestras conversaciones hasta altas horas, nuestras videollamadas interminables, y cómo planificamos el día en que finalmente estaremos juntos.</p>
+
+                <p>En estos dos meses has sido mi compañía virtual, mi confidente a través del teléfono, mi mejor amiga digital y mi gran amor real. Has llenado la distancia de amor, mis días de esperanza, y mi corazón de un amor tan puro y sincero que trasciende cualquier kilómetro que nos separe.</p>
+
+                <p>Esta distancia nos ha enseñado a valorar cada momento compartido, cada palabra, cada foto que nos enviamos. Ha fortalecido nuestro amor de una manera única, haciéndonos más unidos emocionalmente. Cada día que pasa, te amo más y anhelo más el momento de abrazarte.</p>
+
+                <p>Sé que no es fácil amarnos a la distancia, pero contigo todo vale la pena. Cada sacrificio, cada noche de extrañarte, cada día esperando ese reencuentro. Porque lo que tenemos es real, es fuerte, es para siempre, y ninguna distancia puede cambiar eso.</p>
+
+                <p>Gracias por elegir amarme a pesar de los kilómetros, por confiar en nosotros cuando todo parece complicado, por construir conmigo esta historia de amor que desafía fronteras. Gracias por demostrarme que el amor verdadero no conoce distancias.</p>
+
+                <p>Mi promesa es que seguiré luchando por nosotros cada día, que trabajaré para que pronto podamos estar juntos, que este amor a distancia se convierta en un amor de cercanía. Que estos dos meses sean solo el comienzo de una vida entera juntos.</p>
+
+                <p>Te amo con todo mi ser, a través de cada kilómetro, con cada fibra de mi corazón. Eres mi presente más hermoso y mi futuro más prometedor. Pronto estaremos juntos, y mientras tanto, seguirás siendo perfecta para mí, sin importar la distancia.</p>
+
+                <p>¡Feliz segundo mes, vida mía! Cada día estamos más cerca de nuestro reencuentro, y mientras tanto, nuestro amor seguirá creciendo sin límites ni fronteras. Te amo infinitamente, mi amor a distancia. 💕</p>
+            </div>
+
+            <div class="signature">
+                <div class="signature-text">Con todo mi amor,</div>
+                <div class="signature-name">Tu novio que te ama infinitamente 💕</div>
+            </div>
+        </div>
+
+        <!-- Galería de fotos -->
+       <div class="photo-gallery">
+    <div class="photo-frame">
+        <div class="photo-container">
+            <img src="imag/imga2.jpg" alt="Nuestra primera foto especial">
+        </div>
+        <div class="photo-caption">Nuestras videollamadas especiales 💕</div>
+    </div>
+
+    <div class="photo-frame">
+        <div class="photo-container">
+            <img src="imag/imga3.jpeg" alt="Nuestro momento favorito">
+        </div>
+        <div class="photo-caption">Amor sin fronteras ❤️</div>
+    </div>
+</div>
+
+        <!-- Mensaje final -->
+        <div class="final-message">
+            <h3>Para Ti, Mi Amor 💖</h3>
+            <p>
+                Que esta carta sea un puente entre nuestros corazones mientras esperamos nuestro reencuentro. 
+                Que cada palabra acorte la distancia, cada párrafo sea un abrazo virtual, y cada línea una promesa de que pronto estaremos juntos. 
+                Gracias por amarme sin fronteras. Te amo hoy, mañana y siempre, sin importar los kilómetros.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Mostrar fecha actual
+        function showCurrentDate() {
+            const now = new Date();
+            const options = { 
+                
+            };
+            document.getElementById('currentDate').textContent = now.toLocaleDateString('es-ES', options);
+        }
+
+        // Crear partículas flotantes
+        function createParticle() {
+            const particles = ['💕', '❤️', '✨', '💖', '🌟', '💝', '🎀', '🌹'];
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.innerHTML = particles[Math.floor(Math.random() * particles.length)];
+            
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 2 + 's';
+            particle.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            
+            document.getElementById('particles').appendChild(particle);
+            
+            setTimeout(() => {
+                if (particle.parentNode) {
+                    particle.remove();
+                }
+            }, 6000);
+        }
+
+        // Animar contadores
+        function animateCounters() {
+            const counters = [
+                { id: 'monthsCounter', target: 2, duration: 1000 },
+                { id: 'daysCounter', target: 60, duration: 2000 },
+                { id: 'hoursCounter', target: 1440, duration: 2500 }
+            ];
+
+            counters.forEach(counter => {
+                let current = 0;
+                const increment = counter.target / (counter.duration / 50);
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= counter.target) {
+                        current = counter.target;
+                        clearInterval(timer);
+                    }
+                    document.getElementById(counter.id).textContent = Math.floor(current);
+                }, 50);
+            });
+        }
+
+        // Reemplazar placeholders con imágenes reales
+        function loadImages() {
+            const photos = [
+                { 
+                    container: '.photo-gallery .photo-frame:nth-child(1) .photo-container',
+                    src: 'imag/imga2.jpg',
+                    alt: 'Nuestra primera foto especial'
+                },
+                { 
+                    container: '.photo-gallery .photo-frame:nth-child(2) .photo-container',
+                    src: 'imag/imga3.jpeg',
+                    alt: 'Nuestro momento favorito'
+                }
+            ];
+
+            photos.forEach(photo => {
+                const img = new Image();
+                img.onload = function() {
+                    const container = document.querySelector(photo.container);
+                    if (container) {
+                        container.innerHTML = `<img src="${photo.src}" alt="${photo.alt}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">`;
+                    }
+                };
+                img.onerror = function() {
+                    console.log(`Imagen no encontrada: ${photo.src}`);
+                    // Mantener el placeholder si no encuentra la imagen
+                };
+                img.src = photo.src;
+            });
+        }
+
+        // Inicializar todo
+        document.addEventListener('DOMContentLoaded', function() {
+            showCurrentDate();
+            loadImages();
+            
+            setTimeout(() => {
+                animateCounters();
+            }, 1000);
+        });
+
+        // Crear partículas periódicamente
+        setInterval(createParticle, 800);
+    </script>
+</body>
+</html>
